@@ -27,5 +27,6 @@
     "tailwindcss": "^3.3.1",
     "typescript": "^4.9.3",
     "vite": "^4.2.0"
-  }
+  },
+  "proxy": "https://proud-ant-glasses.cyclic.app/"
 }
