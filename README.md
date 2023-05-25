@@ -1,4 +1,15 @@
-﻿# Monthly Lunch Planner (First Draft)
+# Monthly Lunch Planner
  
- This is to keep a record of the monthly lunches that are attended with friends. 
+This is the client side of the Monthly Lunch Planner app which is used to keep a record of the monthly lunches that are attended with friends. 
  
+ ## Technologies Used
+ This project uses the following technologies:
+  1. <b>React</b> for the Frontend
+  2. <b>React Router 6.0</b> for the Routing
+
+# Features
+* Login and SignUp System with Authentication using JWT Tokens
+* Fetching Data from API to get Places visited and new Places to Visit
+* Adding new items to the Places to Visit list using the Restaurant Form
+* A complete Rating System
+* Create polls and view the latest polls 
