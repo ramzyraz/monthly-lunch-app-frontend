@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from "react-router-dom";
 import MultiplePoll from '../components/MultiplePoll/MultiplePoll';
-import axios from 'axios';
+import api from '../api/api';
 
 type IPollOption = {
   _id: string,
@@ -44,7 +44,7 @@ const CurrentPoll = () => {
     // Fetch the poll data from the backend
     const fetchPoll = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/polls/latest');
+        const response = await api.get('/polls/latest');
         setPoll(response.data);
       } catch (error) {
         console.error('Error fetching poll:', error);
@@ -57,7 +57,7 @@ const CurrentPoll = () => {
   async function vote(item: IPollOption) {
     try {
       if (poll) {
-        const response = await axios.post(`http://localhost:5000/polls/${poll._id}/vote`, { optionId: item.optionId }, {
+        const response = await api.post(`/polls/${poll._id}/vote`, { optionId: item.optionId }, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

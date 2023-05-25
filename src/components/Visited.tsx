@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RatingModal from './RatingModal';
 import DummyImg from '../assets/dummy.jpg';
-import axios from 'axios';
+import api from '../api/api';
 
 type RatingsType = {
     rating: number,
@@ -41,7 +41,7 @@ const Visited = (props: Props) => {
         try {
             // Send the rating to the backend API
             if (token && selectedRestaurant) {
-                const response = await axios.put(`http://localhost:5000/places/${selectedRestaurant._id}/rate`, { rating: ratingValue }, {
+                const response = await api.put(`/places/${selectedRestaurant._id}/rate`, { rating: ratingValue }, {
                     headers: {
                       Authorization: `Bearer ${token}`,
                     },

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CreatePollModal from "../components/CreatePoll";
 import DummyImg from '../assets/dummy.jpg';
-import axios from 'axios';
+import api from '../api/api';
 
 type PlacesVisitType = {
     _idx: string,
@@ -22,7 +22,7 @@ const ToVisit = () => {
         const fetchPlacesToVisit = async () => {
             try {
                 // Fetch places to visit
-                const placesToVisitResponse = await axios.get('http://localhost:5000/placesToVisit');
+                const placesToVisitResponse = await api.get('/placesToVisit');
                 setPlacesToVisit(placesToVisitResponse.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -32,7 +32,7 @@ const ToVisit = () => {
         const fetchPolls = async () => {
             try {
               // Fetch polls
-              const polls = await axios.get('http://localhost:5000/polls');
+              const polls = await api.get('/polls');
               if (polls.data.length > 0) {
                 localStorage.setItem('pollExist', 'true');
               }

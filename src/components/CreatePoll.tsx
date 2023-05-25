@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/api';
 
 type PlacesVisitType = {
     _idx: string,
@@ -32,7 +32,7 @@ const CreatePollModal = (props: PollProps) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/polls', { question, options }, {
+      const response = await api.post('/polls', { question, options }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

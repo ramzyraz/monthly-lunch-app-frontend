@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/api';
 
 const AddRestaurantForm = () => {
   const [name, setName] = useState('');
@@ -14,7 +14,7 @@ const AddRestaurantForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/placesToVisit', { name, description, rating: 0.0, url }, {
+      const response = await api.post('/placesToVisit', { name, description, rating: 0.0, url }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

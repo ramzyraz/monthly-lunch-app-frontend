@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/api';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -19,7 +19,7 @@ const Signup = () => {
     }
 
     try {
-        const response = await axios.post('http://localhost:5000/users/signup', { name, email, password, passwordConfirmation });
+        const response = await api.post('/users/signup', { name, email, password, passwordConfirmation });
         console.log(response);
         if (response.status === 201) {
             alert("Sign up Successful!!");
