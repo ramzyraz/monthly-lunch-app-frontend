@@ -19,32 +19,27 @@ const ToVisit = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchPlacesToVisit = async () => {
-            try {
-                // Fetch places to visit
-                const placesToVisitResponse = await api.get('/placesToVisit');
-                setPlacesToVisit(placesToVisitResponse.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
+        const fetchData = async () => {
+          try {
+            const [placesToVisitResponse, pollsResponse] = await Promise.all([
+              api.get('/placesToVisit'),
+              api.get('/polls')
+            ]);
+      
+            setPlacesToVisit(placesToVisitResponse.data);
+      
+            if (pollsResponse.data.length > 0) {
+              localStorage.setItem('pollExist', 'true');
             }
-        };
-
-        const fetchPolls = async () => {
-            try {
-              // Fetch polls
-              const polls = await api.get('/polls');
-              if (polls.data.length > 0) {
-                localStorage.setItem('pollExist', 'true');
-              }
-              console.log(polls);
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
+      
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
         };
       
-        fetchPlacesToVisit();
-        fetchPolls();
-    }, []);
+        fetchData();
+      }, []);
+
     return (
         <section className="section-3">
             <h2 className="section-heading">Places to Visit</h2>
